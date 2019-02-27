@@ -2,4 +2,6 @@
     <string name="app_name">common</string>
     <string name="internet_name">无法连接</string>
     <string name="internet_state_name">网络状态不可用</string>
+    <string name="load_state_name">加载中...</string>
+    <string name="islogin_name">请先登录</string>
 </resources>

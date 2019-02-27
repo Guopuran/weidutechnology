@@ -123,7 +123,7 @@ public class IpresenterImpl implements Ipresenter {
     }
     //多图上传
     @Override
-    public void postMoreImageRequestIpresenter(String url, Map<String, String> params, List<File> list, Class clazz, ModelCallBack callBack) {
+    public void postMoreImageRequestIpresenter(String url, Map<String, String> params, List<File> list, Class clazz) {
         mImodelImpl.postMoreImageRequestModel(url, params,list, clazz, new ModelCallBack() {
             @Override
             public void successData(Object object) {

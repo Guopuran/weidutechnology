@@ -41,6 +41,7 @@ dependencies {
     implementation project(':communication')
     implementation project(':community')
     implementation project(':information')
+    implementation project(':center')
     implementation project(':common')
     implementation project(':thirdsdk')
 }

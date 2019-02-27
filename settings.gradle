@@ -1,1 +1,1 @@
-include ':app', ':main', ':communication', ':community', ':information', ':login', ':common', ':thirdsdk'
+include ':app', ':main', ':communication', ':community', ':information', ':login', ':common', ':thirdsdk', ':center'

@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Environment;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
@@ -28,12 +29,22 @@ public class MyApp extends Application {
         getDp();
         //初始化Fresco
         initFresco();
+        //初始化路由
+        initARouter();
+    }
+
+    private void initARouter() {
+        //打印日志
+        ARouter.openLog();
+        //开启调试模式(开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        ARouter.openDebug();
+        ARouter.init(this);
     }
 
     private void initFresco() {
         // 设置磁盘缓存
         DiskCacheConfig diskCacheConfig =  DiskCacheConfig.newBuilder(this)
-                .setBaseDirectoryName("images_zjj")
+                .setBaseDirectoryName("weidu_image")
                 .setBaseDirectoryPath(Environment.getExternalStorageDirectory())
                 .build();
         //设置磁盘缓存的配置,生成配置文件

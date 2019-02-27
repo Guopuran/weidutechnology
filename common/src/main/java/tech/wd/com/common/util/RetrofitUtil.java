@@ -7,10 +7,24 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -26,6 +40,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import tech.wd.com.common.R;
 
 /**
  *
@@ -39,14 +54,61 @@ import rx.schedulers.Schedulers;
 public class RetrofitUtil {
     private static RetrofitUtil instance;
     private ObservedApis mObservedApis;
-    private final String BaseUrl="http:mobile.bwstudent.com/movieApi/";
+    private final String BaseUrl="https://mobile.bwstudent.com/techApi/";
     public static synchronized RetrofitUtil getInstance(){
         if (instance==null){
             instance=new RetrofitUtil();
         }
         return instance;
     }
+    /*
+     * 默认信任所有的证书
+     * */
+    public static SSLSocketFactory createSSLSocketFactory() {
+        SSLSocketFactory sslSocketFactory = null;
+        try {
+            SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, new TrustManager[]{createTrustAllManager()}, new SecureRandom());
+            sslSocketFactory = sslContext.getSocketFactory();
+        } catch (Exception e) {
 
+        }
+        return sslSocketFactory;
+    }
+
+    public static X509TrustManager createTrustAllManager() {
+        X509TrustManager tm = null;
+        try {
+
+            tm =   new X509TrustManager() {
+                public void checkClientTrusted(X509Certificate[] chain, String authType)
+                        throws CertificateException {
+                    //do nothing，接受任意客户端证书
+                }
+
+                public void checkServerTrusted(X509Certificate[] chain, String authType)
+                        throws CertificateException {
+                    //do nothing，接受任意服务端证书
+                }
+
+                public X509Certificate[] getAcceptedIssuers() {
+                    return new X509Certificate[0];
+                }
+            };
+            InputStream trustStream = ContextUtil.getContext.getResources().openRawResource(R.raw.server);
+            testReadX509CerFile(trustStream);
+        } catch (Exception e) {
+
+        }
+        return tm;
+    }
+    //主机地址验证
+    final HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+        @Override
+        public boolean verify(String hostname, SSLSession session) {
+            return hostname.equals("mobile.bwstudent.com");
+        }
+    };
     private RetrofitUtil(){
         //拦截器
         HttpLoggingInterceptor interceptor=new HttpLoggingInterceptor();
@@ -59,6 +121,8 @@ public class RetrofitUtil {
                 .connectTimeout(10,TimeUnit.SECONDS)
                 //写超时
                 .writeTimeout(10,TimeUnit.SECONDS)
+
+                .hostnameVerifier(hostnameVerifier)
                 //添加拦截器
                 .addInterceptor(new Interceptor() {
                     @Override
@@ -200,10 +264,54 @@ public class RetrofitUtil {
         return observer;
     }
 
-
-
     public interface ICallBack{
         void successData(String result);
         void failureData(String error);
+    }
+
+    /***
+     * 读取*.cer公钥证书文件， 获取公钥证书信息
+     * @author xgh
+     */
+    public static  void testReadX509CerFile(InputStream inStream) throws Exception{
+
+        try {
+            // 读取证书文件
+
+            // 创建X509工厂类
+            CertificateFactory cf = CertificateFactory.getInstance("X.509");
+            // 创建证书对象
+            X509Certificate oCert = (X509Certificate) cf
+                    .generateCertificate(inStream);
+            inStream.close();
+            SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
+            String info = null;
+            // 获得证书版本
+            info = String.valueOf(oCert.getVersion());
+            System.out.println("证书版本:" + info);
+            // 获得证书序列号
+            info = oCert.getSerialNumber().toString(16);
+            System.out.println("证书序列号:" + info);
+            // 获得证书有效期
+            Date beforedate = oCert.getNotBefore();
+            info = dateformat.format(beforedate);
+            System.out.println("证书生效日期:" + info);
+            Date afterdate = oCert.getNotAfter();
+            info = dateformat.format(afterdate);
+            System.out.println("证书失效日期:" + info);
+            // 获得证书主体信息
+            info = oCert.getSubjectDN().getName();
+            System.out.println("证书拥有者:" + info);
+            // 获得证书颁发者信息
+            info = oCert.getIssuerDN().getName();
+            System.out.println("证书颁发者:" + info);
+            // 获得证书签名算法名称
+            info = oCert.getSigAlgName();
+            System.out.println("证书签名算法:" + info);
+
+        } catch (Exception e) {
+            System.out.println("解析证书出错！");
+            e.printStackTrace();
+        }
     }
 }

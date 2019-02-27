@@ -73,6 +73,7 @@ public abstract class BaseFragment extends Fragment implements IView {
         boolean islogin = sharedPreferences.getBoolean("islogin", false);
         if (!islogin){
             ToastUtil.showToast(getActivity(),getResources().getString(R.string.islogin_name));
+            return ;
         }
     }
 
@@ -103,7 +104,7 @@ public abstract class BaseFragment extends Fragment implements IView {
         //显示
     }
 
-    //post请求
+    //delete请求
     protected void deleteRequest(String url, Class clazz){
         if (!(NetWorkUtil.isConn(getActivity()))){
             NetWorkUtil.setNetworkMethod(getActivity());

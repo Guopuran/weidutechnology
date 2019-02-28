@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">login</string>
+    <string name="login_button">登录</string>
+    <string name="register_button">注册</string>
+    <string name="login_text_register">快速注册</string>
+    <string name="register_text_message_register">短信验证注册</string>
+    <string name="login_xian">第三方账号快速登录</string>
 </resources>

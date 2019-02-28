@@ -1,9 +1,11 @@
 package tech.wd.com.main;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,9 +24,25 @@ import tech.wd.com.common.util.ToastUtil;
  * Description: Home页 底部导航Fragment切换
  */
 public class HomeActivity extends BaseActivity {
+    private ImageView mImageView_community;
+    private ImageView mImageView_information;
+    private ImageView mImageView_message;
+
+    private LinearLayout mLinearLayout_community;
+    private LinearLayout mLinearLayout_information;
+    private LinearLayout mLinearLayout_message;
+    private TextView mTextView_community;
+    private TextView mTextView_information;
+    private TextView mTextView_message;
+
+    private FragmentManager mManager;
+    private FragmentTransaction mTransaction;
+    private Fragment mCommunityFragment;
+    private Fragment mInformationFragment;
+    private Fragment mImfragment;
 
 
-    /*@BindView(R.id.activity_img_information)
+    /*@BindView(R2.id.activity_img_information)
     ImageView activityImgInformation;
     @BindView(R.id.activity_text_information)
     TextView activityTextInformation;
@@ -49,16 +67,14 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void initFragment() {
-        Fragment IMfragment = (Fragment) ARouter.getInstance().build("/communication/IMFragment").navigation();
-        if (IMfragment != null) {
-            Toast.makeText(this, "show", Toast.LENGTH_SHORT).show();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.frame, IMfragment);
-            transaction.commit();
-        } else {
-            Toast.makeText(this, "hide", Toast.LENGTH_SHORT).show();
-        }
+         mImfragment = (Fragment) ARouter.getInstance().build("/communication/IMFragment").navigation();
+         mInformationFragment = (Fragment) ARouter.getInstance().build("/information/InformationFragment").navigation();
+         mCommunityFragment = (Fragment) ARouter.getInstance().build("/community/CommunityFragment").navigation();
+
+
+        mManager = getSupportFragmentManager();
+        mTransaction = mManager.beginTransaction();
+        mTransaction.add(R.id.activity_home_frame,mInformationFragment,mInformationFragment.getClass().getName()).commit();
 
     }
 
@@ -75,7 +91,107 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
 
+         mImageView_community = findViewById(R.id.activity_img_community);
+         mImageView_information = findViewById(R.id.activity_img_information);
+         mImageView_message = findViewById(R.id.activity_img_message);
 
+         mLinearLayout_community = findViewById(R.id.activity_linear_community);
+         mLinearLayout_information = findViewById(R.id.activity_linear_information);
+         mLinearLayout_message = findViewById(R.id.activity_linear_message);
+
+         mTextView_community = findViewById(R.id.activity_text_community);
+         mTextView_information = findViewById(R.id.activity_text_community);
+         mTextView_message = findViewById(R.id.activity_text_community);
+
+         onClickListener();
+
+    }
+
+    private void onClickListener() {
+
+        mLinearLayout_information.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                mImageView_community.setImageResource(R.mipmap.common_tab_community_n);
+                mTextView_community.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorSix)));
+                mImageView_information.setImageResource(R.mipmap.common_tab_informatiion_s);
+                mTextView_information.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorThree)));
+                mImageView_message.setImageResource(R.mipmap.common_tab_message_n);
+                mTextView_message.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorSix)));
+
+                FragmentManager information = getSupportFragmentManager();
+
+                FragmentTransaction transactionInformation = information.beginTransaction();
+
+
+                transactionInformation.hide(mImfragment);
+                transactionInformation.hide(mCommunityFragment);
+                transactionInformation.show(mInformationFragment);
+                transactionInformation.commit();
+
+
+            }
+        });
+
+
+        mLinearLayout_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FragmentManager message = getSupportFragmentManager();
+
+                FragmentTransaction transactionMessage = message.beginTransaction();
+
+                mImageView_community.setImageResource(R.mipmap.common_tab_community_n);
+                mTextView_community.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorSix)));
+                mImageView_information.setImageResource(R.mipmap.common_tab_information_n);
+                mTextView_information.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorSix)));
+                mImageView_message.setImageResource(R.mipmap.common_tab_message_s);
+                mTextView_message.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorThree)));
+
+
+                if (message.findFragmentByTag(mImfragment.getClass().getName()) == null) {
+                    transactionMessage.add(R.id.activity_home_frame,mImfragment,mImfragment.getClass().getName()).commit();
+                }else {
+                    transactionMessage.hide(mInformationFragment);
+                    transactionMessage.hide(mCommunityFragment);
+                    transactionMessage.show(mImfragment);
+                    transactionMessage.commit();
+                }
+
+            }
+        });
+
+
+        mLinearLayout_community.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FragmentManager community = getSupportFragmentManager();
+
+                FragmentTransaction transactionCommunity = community.beginTransaction();
+
+                mImageView_community.setImageResource(R.mipmap.common_tab_community_s);
+                mTextView_community.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorThree)));
+                mImageView_information.setImageResource(R.mipmap.common_tab_information_n);
+                mTextView_information.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorSix)));
+                mImageView_message.setImageResource(R.mipmap.common_tab_message_n);
+                mTextView_message.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorSix)));
+
+
+                if (community.findFragmentByTag(mCommunityFragment.getClass().getName()) == null) {
+                    transactionCommunity.add(R.id.activity_home_frame,mCommunityFragment,mCommunityFragment.getClass().getName()).commit();
+                }else {
+                    transactionCommunity.hide(mInformationFragment);
+                    transactionCommunity.hide(mImfragment);
+                    transactionCommunity.show(mCommunityFragment);
+                    transactionCommunity.commit();
+                }
+
+            }
+        });
     }
 
     @Override
@@ -83,10 +199,4 @@ public class HomeActivity extends BaseActivity {
         return R.layout.activity_home;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

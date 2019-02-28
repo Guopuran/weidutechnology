@@ -50,15 +50,7 @@ public class HomeActivity extends BaseActivity {
 
     private void initFragment() {
         Fragment IMfragment = (Fragment) ARouter.getInstance().build("/communication/IMFragment").navigation();
-        if (IMfragment != null) {
-            Toast.makeText(this, "show", Toast.LENGTH_SHORT).show();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.frame, IMfragment);
-            transaction.commit();
-        } else {
-            Toast.makeText(this, "hide", Toast.LENGTH_SHORT).show();
-        }
+
 
     }
 

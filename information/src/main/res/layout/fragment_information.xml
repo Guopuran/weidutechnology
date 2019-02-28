@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="32dp"
+    >
+     <ImageView
+         android:id="@+id/information_channel_imgae"
+         android:layout_width="24dp"
+         android:layout_height="24dp"
+         android:src="@mipmap/home_nav_btn_menu_n"
+
+         android:layout_marginLeft="12dp"
+         />
+      <TextView
+          android:id="@+id/zixun"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/information_text"
+          android:layout_centerHorizontal="true"
+          />
+      <ImageView
+          android:id="@+id/information_search_image"
+          android:layout_width="24dp"
+          android:layout_height="24dp"
+          android:src="@mipmap/common_nav_btn_search_n"
+          android:layout_alignParentRight="true"
+          android:layout_marginRight="12dp"
+          />
+</RelativeLayout>

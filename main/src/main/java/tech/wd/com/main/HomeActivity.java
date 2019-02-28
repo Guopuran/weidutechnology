@@ -50,8 +50,6 @@ public class HomeActivity extends BaseActivity {
 
     private void initFragment() {
         Fragment IMfragment = (Fragment) ARouter.getInstance().build("/communication/IMFragment").navigation();
-
-
     }
 
     @Override
@@ -75,10 +73,5 @@ public class HomeActivity extends BaseActivity {
         return R.layout.activity_home;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 }

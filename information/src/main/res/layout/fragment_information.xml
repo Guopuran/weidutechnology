@@ -3,6 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="32dp"
+    android:clipChildren="false"
     >
      <ImageView
          android:id="@+id/information_channel_imgae"
@@ -27,4 +28,22 @@
           android:layout_alignParentRight="true"
           android:layout_marginRight="12dp"
           />
+    <com.stx.xhb.xbanner.XBanner
+        android:id="@+id/information_xbanner"
+        android:layout_width="284dp"
+        android:layout_height="137dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/zixun"
+        android:layout_marginTop="20dp"
+        
+        >
+    </com.stx.xhb.xbanner.XBanner>
+     <com.jcodecraeer.xrecyclerview.XRecyclerView
+         android:layout_width="336dp"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_below="@id/information_channel_imgae"
+         >
+
+     </com.jcodecraeer.xrecyclerview.XRecyclerView>
 </RelativeLayout>

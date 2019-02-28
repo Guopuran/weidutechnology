@@ -114,12 +114,13 @@ public class HomeActivity extends BaseActivity {
             public void onClick(View view) {
 
 
-                mImageView_community.setImageResource(R.mipmap.common_tab_community_n);
-                mTextView_community.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorSix)));
                 mImageView_information.setImageResource(R.mipmap.common_tab_informatiion_s);
-                mTextView_information.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorThree)));
+                mImageView_community.setImageResource(R.mipmap.common_tab_community_n);
                 mImageView_message.setImageResource(R.mipmap.common_tab_message_n);
-                mTextView_message.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorSix)));
+
+                mTextView_information.setTextColor(getResources().getColor(R.color.homeColorThree));
+                mTextView_message.setTextColor(getResources().getColor(R.color.homeColorSix));
+                mTextView_community.setTextColor(getResources().getColor(R.color.homeColorSix));
 
                 FragmentManager information = getSupportFragmentManager();
 
@@ -144,12 +145,13 @@ public class HomeActivity extends BaseActivity {
 
                 FragmentTransaction transactionMessage = message.beginTransaction();
 
-                mImageView_community.setImageResource(R.mipmap.common_tab_community_n);
-                mTextView_community.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorSix)));
                 mImageView_information.setImageResource(R.mipmap.common_tab_information_n);
-                mTextView_information.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorSix)));
+                mImageView_community.setImageResource(R.mipmap.common_tab_community_n);
                 mImageView_message.setImageResource(R.mipmap.common_tab_message_s);
-                mTextView_message.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorThree)));
+
+                mTextView_information.setTextColor(getResources().getColor(R.color.homeColorSix));
+                mTextView_message.setTextColor(getResources().getColor(R.color.homeColorThree));
+                mTextView_community.setTextColor(getResources().getColor(R.color.homeColorSix));
 
 
                 if (message.findFragmentByTag(mImfragment.getClass().getName()) == null) {
@@ -173,12 +175,15 @@ public class HomeActivity extends BaseActivity {
 
                 FragmentTransaction transactionCommunity = community.beginTransaction();
 
-                mImageView_community.setImageResource(R.mipmap.common_tab_community_s);
-                mTextView_community.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorThree)));
+
+
                 mImageView_information.setImageResource(R.mipmap.common_tab_information_n);
-                mTextView_information.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorSix)));
                 mImageView_message.setImageResource(R.mipmap.common_tab_message_n);
-                mTextView_message.setTextColor(Integer.parseInt(String.valueOf(R.color.homeColorSix)));
+                mImageView_community.setImageResource(R.mipmap.common_tab_community_s);
+
+                mTextView_information.setTextColor(getResources().getColor(R.color.homeColorSix));
+                mTextView_message.setTextColor(getResources().getColor(R.color.homeColorSix));
+                mTextView_community.setTextColor(getResources().getColor(R.color.homeColorThree));
 
 
                 if (community.findFragmentByTag(mCommunityFragment.getClass().getName()) == null) {

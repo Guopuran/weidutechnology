@@ -1,24 +1,18 @@
-package tech.wd.com.information.fragment;
+package tech.wd.com.communication.message;
 
-import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-
 import tech.wd.com.common.base.BaseFragment;
-import tech.wd.com.information.R;
-
 /**
  *
- *@作者 刘
+ * @作者 然
  *
- *@描述 资讯的fragment
+ * @描述 消息页面
  *
- *@时间 2019/2/27 16:37
+ * @创建日期 2019/2/28 13:33
  *
  */
-@Route(path = "/information/InformationFragment")
-public class InformationFragment extends BaseFragment {
+public class MessageFragment extends BaseFragment {
     @Override
     protected void initData() {
 
@@ -41,6 +35,6 @@ public class InformationFragment extends BaseFragment {
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_information;
+        return 0;
     }
 }

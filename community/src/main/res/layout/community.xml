@@ -2,7 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent">
+    >
 
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/fragment_community_xrv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="32dp"/>
 
 </LinearLayout>

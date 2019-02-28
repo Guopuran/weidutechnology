@@ -46,7 +46,7 @@
                 android:textSize="12sp"
                 android:text="@string/text_information_name"
                 android:layout_gravity="center_horizontal"
-                android:textColor="@drawable/settextcolor"
+                android:textColor="@color/homeColorThree"
                 android:layout_marginTop="6dp"
                 />
         </LinearLayout>

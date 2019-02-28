@@ -23,7 +23,15 @@ import tech.wd.com.common.util.ToastUtil;
 import tech.wd.com.common.view.IView;
 
 import static android.content.Context.MODE_PRIVATE;
-
+/**
+ *
+ * @作者 然
+ *
+ * @描述 Fragment基类
+ *
+ * @创建日期 2019/2/28 8:29
+ *
+ */
 public abstract class BaseFragment extends Fragment implements IView {
     IpresenterImpl mIpresenterImpl;
     Dialog mCircularLoading;

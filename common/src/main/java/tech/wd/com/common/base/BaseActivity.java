@@ -1,10 +1,16 @@
 package tech.wd.com.common.base;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,11 +25,36 @@ import tech.wd.com.common.util.CircularLoading;
 import tech.wd.com.common.util.NetWorkUtil;
 import tech.wd.com.common.util.ToastUtil;
 import tech.wd.com.common.view.IView;
-
+/**
+ *
+ * @作者 然
+ *
+ * @描述 Activity基类
+ *
+ * @创建日期 2019/2/28 8:29
+ *
+ */
 public abstract class BaseActivity extends AppCompatActivity implements IView {
+
+    /**
+     * 整个Activity视图的根视图
+     */
+    View decorView;
+
+    /**
+     * 手指按下时的坐标
+     */
+    float downX, downY;
+
+    /**
+     * 手机屏幕的宽度和高度
+     */
+    float screenWidth, screenHeight;
+
     IpresenterImpl mIpresenterImpl;
     Dialog mCircularLoading;
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
+    public boolean isNeedFCancle = true;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +65,15 @@ public abstract class BaseActivity extends AppCompatActivity implements IView {
         mIpresenterImpl=new IpresenterImpl(this);
 
         initView(savedInstanceState);
+
+        //拿到整个activity的视图
+        decorView = getWindow().getDecorView();
+
+        // 获得手机屏幕的宽度和高度，单位像素
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        screenWidth = displayMetrics.widthPixels;
+        screenHeight = displayMetrics.heightPixels;
 
         initData();
     }
@@ -47,6 +87,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IView {
     protected abstract void initView(Bundle savedInstanceState);
 
     protected abstract int getLayoutResId();
+
+    //是否要支持滑动关闭
+    public void isSlide(Boolean bool){
+        isNeedFCancle = bool;
+    }
 
     @Override
     public void successData(Object object) {
@@ -160,4 +205,60 @@ public abstract class BaseActivity extends AppCompatActivity implements IView {
             mIpresenterImpl.onDeatch();
         }
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if(!isNeedFCancle){
+            return super.onTouchEvent(event);
+        }else {
+            if(event.getAction() == MotionEvent.ACTION_DOWN){
+                //手指按下时的坐标
+                downX = event.getX();
+
+            }else if(event.getAction() == MotionEvent.ACTION_MOVE){
+                float moveDistanceX = event.getX()-downX;
+                if(moveDistanceX > 0){
+                    decorView.setX(moveDistanceX);
+                }
+            }else if(event.getAction() == MotionEvent.ACTION_UP){
+                float moveDistanceX = event.getX()-downX;
+                if(moveDistanceX > screenWidth / 2){
+                    ContinueMove(moveDistanceX);
+                }else {
+                    reToBackLeft(moveDistanceX);
+                }
+            }
+        }
+        return super.onTouchEvent(event);
+    }
+
+    public void ContinueMove(float moveDistanceX){
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(moveDistanceX, screenWidth);
+        valueAnimator.setDuration(1000);
+        valueAnimator.start();
+
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float x = (float) animation.getAnimatedValue();
+                decorView.setX(x);
+            }
+        });
+
+        valueAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                finish();
+            }
+        });
+
+    }
+
+    private void reToBackLeft(float moveDistanceX){
+        ObjectAnimator.ofFloat(decorView,"X",moveDistanceX,0)
+                .setDuration(1000)
+                .start();
+    }
+
 }

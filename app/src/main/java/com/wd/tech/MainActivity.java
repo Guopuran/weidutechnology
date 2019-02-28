@@ -1,13 +1,37 @@
 package com.wd.tech;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import tech.wd.com.common.base.BaseActivity;
+
+public class MainActivity extends BaseActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void initData() {
+        Intent intent=new Intent(MainActivity.this,AsdActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void success(Object object) {
+
+    }
+
+    @Override
+    protected void failed(String error) {
+
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.activity_main;
     }
 }

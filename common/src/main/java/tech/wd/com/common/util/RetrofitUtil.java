@@ -110,6 +110,8 @@ public class RetrofitUtil {
         }
     };
     private RetrofitUtil(){
+        SSLSocketFactory sslSocketFactory = createSSLSocketFactory();
+
         //拦截器
         HttpLoggingInterceptor interceptor=new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -121,7 +123,7 @@ public class RetrofitUtil {
                 .connectTimeout(10,TimeUnit.SECONDS)
                 //写超时
                 .writeTimeout(10,TimeUnit.SECONDS)
-
+                .sslSocketFactory(sslSocketFactory, createTrustAllManager())
                 .hostnameVerifier(hostnameVerifier)
                 //添加拦截器
                 .addInterceptor(new Interceptor() {

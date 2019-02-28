@@ -28,6 +28,6 @@ public interface Ipresenter {
     //上传图片
     void postImageRequestIpresenter(String url, File file, Class clazz);
     //多图上传
-    void postMoreImageRequestIpresenter(String url, Map<String,String> params, List<File> list , Class clazz , ModelCallBack callBack);
+    void postMoreImageRequestIpresenter(String url, Map<String,String> params, List<File> list , Class clazz );
 
 }

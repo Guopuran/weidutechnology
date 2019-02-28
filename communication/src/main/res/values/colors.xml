@@ -6,4 +6,5 @@
     <color name="colorWrite">#ffffff</color>
     <color name="colorRadioText">#333333</color>
     <color name="colorRadioText_check">#20aff9</color>
+    <color name="colorBottom">#f2f2f2</color>
 </resources>

@@ -80,5 +80,6 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+        //
     }
 }

@@ -19,7 +19,6 @@ import tech.wd.com.information.R;
  */
 @Route(path = "/information/InformationFragment")
 public class InformationFragment extends BaseFragment {
-
     @Override
     protected void initData() {
 

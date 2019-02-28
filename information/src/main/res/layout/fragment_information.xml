@@ -35,7 +35,6 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/zixun"
         android:layout_marginTop="20dp"
-        
         >
     </com.stx.xhb.xbanner.XBanner>
      <com.jcodecraeer.xrecyclerview.XRecyclerView

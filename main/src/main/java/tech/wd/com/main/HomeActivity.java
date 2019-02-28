@@ -67,6 +67,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void initFragment() {
+        Fragment IMfragment = (Fragment) ARouter.getInstance().build("/communication/IMFragment").navigation();
          mImfragment = (Fragment) ARouter.getInstance().build("/communication/IMFragment").navigation();
          mInformationFragment = (Fragment) ARouter.getInstance().build("/information/InformationFragment").navigation();
          mCommunityFragment = (Fragment) ARouter.getInstance().build("/community/CommunityFragment").navigation();
@@ -217,5 +218,6 @@ public class HomeActivity extends BaseActivity {
     protected int getLayoutResId() {
         return R.layout.activity_home;
     }
+
 
 }

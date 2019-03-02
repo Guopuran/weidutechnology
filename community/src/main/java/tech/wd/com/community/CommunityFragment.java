@@ -4,13 +4,18 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
+import java.util.HashMap;
+
 import tech.wd.com.common.base.BaseFragment;
 
 @Route(path = "/community/CommunityFragment")
 public class CommunityFragment extends BaseFragment {
 
+
     @Override
     protected void initData() {
+
+
 
     }
 

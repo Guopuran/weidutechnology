@@ -1,8 +1,9 @@
-package tech.wd.com.communication.relation;
+package tech.wd.com.communication.relation.fragment;
 
 import android.view.View;
 
 import tech.wd.com.common.base.BaseFragment;
+import tech.wd.com.communication.R;
 
 public class RelationFragment extends BaseFragment {
     @Override
@@ -27,6 +28,6 @@ public class RelationFragment extends BaseFragment {
 
     @Override
     protected int getLayoutResId() {
-        return 0;
+        return R.layout.fragment_relation;
     }
 }

@@ -95,8 +95,6 @@ public abstract class BaseFragment extends Fragment implements IView {
         mCircularLoading = CircularLoading.showLoadDialog(getActivity(), getActivity().getResources().getString(R.string.load_state_name), true);
 
         mIpresenterImpl.getRequestIpresenter(url,clazz);
-
-
     }
 
     //post请求

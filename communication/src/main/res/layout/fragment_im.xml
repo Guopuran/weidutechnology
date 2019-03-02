@@ -45,8 +45,8 @@
     </RadioGroup>
     <ImageView
         android:id="@+id/im_image_more"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:src="@mipmap/common_nav_btn_add_n"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/im_radio"
@@ -54,6 +54,7 @@
         android:layout_marginRight="12dp"
         />
     <android.support.v4.view.ViewPager
+        android:id="@+id/im_viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintLeft_toLeftOf="parent"

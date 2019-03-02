@@ -63,6 +63,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        isSlide(false);
         initFragment();
     }
 
@@ -219,5 +220,11 @@ public class HomeActivity extends BaseActivity {
         return R.layout.activity_home;
     }
 
-
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+        //
+    }
 }

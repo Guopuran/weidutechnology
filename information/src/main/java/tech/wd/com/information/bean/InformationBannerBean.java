@@ -3,9 +3,6 @@ package tech.wd.com.information.bean;
 import java.util.List;
 
 public class InformationBannerBean {
-
-
-
     private String message;
     private String status;
     private List<ResultBean> result;
@@ -39,6 +36,15 @@ public class InformationBannerBean {
         private String imageUrl;
         private String jumpUrl;
         private int rank;
+        private String title;
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
 
         public String getImageUrl() {
             return imageUrl;

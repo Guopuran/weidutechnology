@@ -1,4 +1,4 @@
-package tech.wd.com.common.util;
+package tech.wd.com.common.util.TimeUtil;
 
 
 import java.text.SimpleDateFormat;

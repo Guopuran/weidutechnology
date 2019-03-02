@@ -1,4 +1,4 @@
-package com.wd.tech.utils;
+package tech.wd.com.common.util;
 
 
 

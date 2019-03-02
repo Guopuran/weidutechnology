@@ -3,7 +3,7 @@
     package="tech.wd.com.login">
 
     <application>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -11,7 +11,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".activity.RegisterActivity"></activity>
     </application>
 
 </manifest>

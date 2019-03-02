@@ -3,10 +3,7 @@
     package="tech.wd.com.communication">
 
     <application>
-        <activity android:name=".MainActivity">
 
-
-        </activity>
     </application>
 
 </manifest>

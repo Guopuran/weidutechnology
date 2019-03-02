@@ -18,7 +18,7 @@
  * limitations under the License.
  */
 
-package com.wd.tech.util;
+package tech.wd.com.common.util;
 
 /**
  * This class provides encode/decode for RFC 2045 Base64 as

@@ -2,4 +2,13 @@
     <string name="app_name">communication</string>
     <string name="im_radio_message">消息</string>
     <string name="im_radio_relation">联系人</string>
+    <string name="more_friend">加好友或群</string>
+    <string name="more_group">创建群聊</string>
+    <string name="create_group_text_name">创建群聊</string>
+    <string name="create_group_edit_name">填写群名称（2-20汉字）</string>
+    <string name="create_group_text">100字以内</string>
+    <string name="color_create_group_button">创建</string>
+    <string name="color_create_group_edit">介绍下您的群吧，让更多朋友加入</string>
+
+
 </resources>

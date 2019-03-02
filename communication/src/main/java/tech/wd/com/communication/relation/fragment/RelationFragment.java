@@ -1,4 +1,4 @@
-package tech.wd.com.communication.relation;
+package tech.wd.com.communication.relation.fragment;
 
 import android.view.View;
 

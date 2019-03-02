@@ -19,4 +19,10 @@
     <item name="android:windowLightStatusBar">true</item>
 
     </style>
+
+    <style name="MyTheme" parent="AppTheme.ImmersiveThemewitletext">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 </resources>

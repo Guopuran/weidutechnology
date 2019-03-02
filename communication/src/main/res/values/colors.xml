@@ -7,4 +7,10 @@
     <color name="colorRadioText">#333333</color>
     <color name="colorRadioText_check">#20aff9</color>
     <color name="colorBottom">#f2f2f2</color>
+    <color name="colorMorePop">#666666</color>
+    <color name="color_group_text">#999999</color>
+    <color name="colorpop">#00ffffff</color>
+    <color name="color_edit_name">#20affa</color>
+
+
 </resources>

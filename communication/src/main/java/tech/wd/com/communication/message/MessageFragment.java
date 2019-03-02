@@ -4,6 +4,7 @@ import android.view.View;
 
 import tech.wd.com.common.base.BaseFragment;
 import tech.wd.com.communication.R;
+import tech.wd.com.communication.R2;
 
 /**
  *

@@ -63,6 +63,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        isSlide(false);
         initFragment();
     }
 

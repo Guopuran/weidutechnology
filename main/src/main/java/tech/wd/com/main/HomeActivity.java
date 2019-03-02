@@ -195,7 +195,6 @@ public class HomeActivity extends BaseActivity {
                     transactionCommunity.show(mCommunityFragment);
                     transactionCommunity.commit();
                 }
-
             }
         });
     }

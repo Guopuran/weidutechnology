@@ -3,6 +3,9 @@ package tech.wd.com.communication.message;
 import android.view.View;
 
 import tech.wd.com.common.base.BaseFragment;
+import tech.wd.com.communication.R;
+import tech.wd.com.communication.R2;
+
 /**
  *
  * @作者 然
@@ -35,6 +38,6 @@ public class MessageFragment extends BaseFragment {
 
     @Override
     protected int getLayoutResId() {
-        return 0;
+        return R.layout.fragment_message;
     }
 }

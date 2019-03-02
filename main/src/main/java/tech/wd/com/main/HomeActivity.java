@@ -63,6 +63,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        isSlide(false);
         initFragment();
     }
 
@@ -142,9 +143,7 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                FragmentManager message = getSupportFragmentManager();
 
-                FragmentTransaction transactionMessage = message.beginTransaction();
 
                 mImageView_information.setImageResource(R.mipmap.common_tab_information_n);
                 mImageView_community.setImageResource(R.mipmap.common_tab_community_n);
@@ -154,15 +153,26 @@ public class HomeActivity extends BaseActivity {
                 mTextView_message.setTextColor(getResources().getColor(R.color.homeColorThree));
                 mTextView_community.setTextColor(getResources().getColor(R.color.homeColorSix));
 
+                FragmentManager message = getSupportFragmentManager();
+                FragmentTransaction transactionMessage = message.beginTransaction();
 
                 if (message.findFragmentByTag(mImfragment.getClass().getName()) == null) {
                     transactionMessage.add(R.id.activity_home_frame,mImfragment,mImfragment.getClass().getName()).commit();
+
+                    if (message.findFragmentByTag(mInformationFragment.getClass().getName()) != null) {
+                        transactionMessage.hide(mInformationFragment);
+                    }
+                    if (message.findFragmentByTag(mCommunityFragment.getClass().getName()) != null) {
+                        transactionMessage.hide(mCommunityFragment);
+                    }
                 }else {
                     transactionMessage.hide(mInformationFragment);
                     transactionMessage.hide(mCommunityFragment);
                     transactionMessage.show(mImfragment);
                     transactionMessage.commit();
                 }
+
+
 
             }
         });
@@ -171,11 +181,6 @@ public class HomeActivity extends BaseActivity {
         mLinearLayout_community.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                FragmentManager community = getSupportFragmentManager();
-
-                FragmentTransaction transactionCommunity = community.beginTransaction();
-
 
 
                 mImageView_information.setImageResource(R.mipmap.common_tab_information_n);
@@ -186,15 +191,26 @@ public class HomeActivity extends BaseActivity {
                 mTextView_message.setTextColor(getResources().getColor(R.color.homeColorSix));
                 mTextView_community.setTextColor(getResources().getColor(R.color.homeColorThree));
 
+                FragmentManager community = getSupportFragmentManager();
+                FragmentTransaction transactionCommunity = community.beginTransaction();
 
                 if (community.findFragmentByTag(mCommunityFragment.getClass().getName()) == null) {
                     transactionCommunity.add(R.id.activity_home_frame,mCommunityFragment,mCommunityFragment.getClass().getName()).commit();
+
+                    if (community.findFragmentByTag(mInformationFragment.getClass().getName()) != null) {
+                        transactionCommunity.hide(mInformationFragment);
+                    }
+                    if (community.findFragmentByTag(mImfragment.getClass().getName()) != null) {
+                        transactionCommunity.hide(mImfragment);
+                    }
                 }else {
                     transactionCommunity.hide(mInformationFragment);
                     transactionCommunity.hide(mImfragment);
                     transactionCommunity.show(mCommunityFragment);
                     transactionCommunity.commit();
                 }
+
+
             }
         });
     }
@@ -204,5 +220,11 @@ public class HomeActivity extends BaseActivity {
         return R.layout.activity_home;
     }
 
-
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+        //
+    }
 }

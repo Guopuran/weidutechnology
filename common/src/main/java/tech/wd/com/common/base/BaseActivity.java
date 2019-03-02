@@ -106,7 +106,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IView {
         //关闭load圈
         CircularLoading.closeDialog(mCircularLoading);
         failed(error);
-
     }
 
     //判断是否登录
@@ -222,10 +221,12 @@ public abstract class BaseActivity extends AppCompatActivity implements IView {
                 }
             }else if(event.getAction() == MotionEvent.ACTION_UP){
                 float moveDistanceX = event.getX()-downX;
-                if(moveDistanceX > screenWidth / 2){
-                    ContinueMove(moveDistanceX);
-                }else {
-                    reToBackLeft(moveDistanceX);
+                if(moveDistanceX > 0){
+                    if(moveDistanceX > screenWidth / 2){
+                        ContinueMove(moveDistanceX);
+                    }else {
+                        reToBackLeft(moveDistanceX);
+                    }
                 }
             }
         }
@@ -234,7 +235,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IView {
 
     public void ContinueMove(float moveDistanceX){
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(moveDistanceX, screenWidth);
-        valueAnimator.setDuration(1000);
+        valueAnimator.setDuration(50);
         valueAnimator.start();
 
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -257,7 +258,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IView {
 
     private void reToBackLeft(float moveDistanceX){
         ObjectAnimator.ofFloat(decorView,"X",moveDistanceX,0)
-                .setDuration(1000)
+                .setDuration(50)
                 .start();
     }
 

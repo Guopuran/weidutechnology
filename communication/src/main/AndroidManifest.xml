@@ -3,7 +3,12 @@
     package="tech.wd.com.communication">
 
     <application>
-
+        <activity android:name=".relation.activity.CreateGroupActivity"
+            android:theme="@style/MyTheme"
+            />
+        <activity android:name=".relation.activity.AddFriendGroupActivity"
+            android:theme="@style/MyTheme"
+            ></activity>
     </application>
 
 </manifest>

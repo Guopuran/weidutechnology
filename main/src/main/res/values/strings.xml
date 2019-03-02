@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">main</string>
+    <string name="text_information_name">资讯</string>
+    <string name="text_message_name">消息</string>
+    <string name="text_community_name">社区</string>
 </resources>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">communication</string>
+    <string name="im_radio_message">消息</string>
+    <string name="im_radio_relation">联系人</string>
 </resources>
